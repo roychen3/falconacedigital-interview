@@ -1,0 +1,26 @@
+[
+  {
+    "name": "熱門報導",
+    "url": "breaking_news?category=hot"
+  },
+  {
+    "name": "全球",
+    "url": "breaking_news?category=global"
+  },
+  {
+    "name": "娛樂",
+    "url": "breaking_news?category=entertainment"
+  },
+  {
+    "name": "商業",
+    "url": "breaking_news?category=business"
+  },
+  {
+    "name": "運動",
+    "url": "breaking_news?category=sports"
+  },
+  {
+    "name": "科技",
+    "url": "breaking_news?category=technology"
+  }
+]
