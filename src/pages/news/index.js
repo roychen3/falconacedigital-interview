@@ -1,15 +1,4 @@
 import React, { useState, useEffect, forwardRef } from 'react';
-import { useSearchParams, useLocation } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-
-import {
-  getCategoryNewsAction,
-  getSearchNewsAction,
-  resetNewsAction,
-  cleanTotalArticlesAction,
-} from '../../redux/newsSlice';
-
-import { useInfiniteScrolling } from '../../hook/useInfiniteScrolling';
 
 import ErrorAlert from '../../components/errorAlert';
 import Spinner from '../../components/spinner';
@@ -22,8 +11,7 @@ import {
   SpinnerLayout,
 } from './styled';
 
-import mockMenu from '../../mockData/menu.json';
-import mockNews from '../../mockData/news.json';
+import useNews from './useNews';
 
 const WrappedArticleCard = forwardRef((props, ref) => (
   <ArticleCard {...props} forwardedRef={ref} />
@@ -31,67 +19,20 @@ const WrappedArticleCard = forwardRef((props, ref) => (
 WrappedArticleCard.displayName = 'ArticleCard';
 
 const News = () => {
-  const [params] = useSearchParams();
-  const location = useLocation();
-  const dispatch = useDispatch();
-
-  const category = params.get('category');
-  const keywords = params.get('keywords');
-
-  const [apiParams, setApiParams] = useState({});
+  const {
+    title,
+    newsLoading,
+    totalArticles,
+    newsError,
+    infiniteScrollingLastNewsRef,
+    mockNews,
+  } = useNews();
+  
   const [errorAlertOpen, setErrorAlertOpen] = useState(false);
-
-  const newsLoading = useSelector((state) => state.newsSlice.loading);
-  const newsError = useSelector((state) => state.newsSlice.error);
-  const totalArticles = useSelector((state) => state.newsSlice.totalArticles);
-  const isEnd = useSelector((state) => state.newsSlice.isEnd);
-
-  const getTitle = () => {
-    if (location.pathname === '/breaking_news') {
-      const findItem = mockMenu.find((item) => item.url.includes(category));
-      return findItem.name;
-    }
-
-    if (location.pathname === '/search') {
-      return `Search: ${keywords}`;
-    }
-
-    return '';
-  };
 
   const handleErrorAlertClose = () => {
     setErrorAlertOpen(false);
   };
-
-  const handleInfiniteScrollingTrigger = () => {
-    if (isEnd === false && newsLoading === false && !newsError) {
-      setApiParams((preValues) => ({
-        ...preValues,
-        page: preValues.page + 1,
-      }));
-    }
-  };
-  const lastElementRef = useInfiniteScrolling(handleInfiniteScrollingTrigger);
-
-  useEffect(() => {
-    setApiParams((preValues) => ({
-      ...preValues,
-      category,
-      keywords,
-      page: 1,
-    }));
-    dispatch(cleanTotalArticlesAction());
-  }, [category, keywords]);
-
-  useEffect(() => {
-    if (Object.keys(apiParams).length > 0) {
-      if (location.pathname === '/breaking_news') {
-        dispatch(getCategoryNewsAction(apiParams));
-      } else if (location.pathname === '/search') {
-        dispatch(getSearchNewsAction(apiParams));
-      }
-    }
-  }, [apiParams]);
 
   useEffect(() => {
     if (newsError) {
@@ -101,15 +42,9 @@ const News = () => {
     }
   }, [newsError]);
 
-  useEffect(() => {
-    return () => {
-      dispatch(resetNewsAction());
-    };
-  }, []);
-
   return (
     <ArticleContainer>
-      <ArticleTitle>{getTitle()}</ArticleTitle>
+      <ArticleTitle>{title}</ArticleTitle>
 
       <ArticleCardLayout>
         {totalArticles.length === 0 && newsError && (
@@ -125,7 +60,7 @@ const News = () => {
             <WrappedArticleCard
               key={itemIdx}
               data={item}
-              ref={lastElementRef}
+              ref={infiniteScrollingLastNewsRef}
             />
           ) : (
             <ArticleCard key={itemIdx} data={item} />
