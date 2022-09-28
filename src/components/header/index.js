@@ -11,7 +11,7 @@ const Header = () => {
   const navigate = useNavigate();
 
   const handleSearch = (keywords) => {
-    navigate(`/search?keywords=${keywords}`);
+    navigate(`/news?keywords=${keywords}`);
   };
 
   return (

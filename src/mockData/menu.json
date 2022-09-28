@@ -1,26 +1,26 @@
 [
   {
     "name": "熱門報導",
-    "url": "breaking_news?category=hot"
+    "url": "news?category=hot"
   },
   {
     "name": "全球",
-    "url": "breaking_news?category=global"
+    "url": "news?category=global"
   },
   {
     "name": "娛樂",
-    "url": "breaking_news?category=entertainment"
+    "url": "news?category=entertainment"
   },
   {
     "name": "商業",
-    "url": "breaking_news?category=business"
+    "url": "news?category=business"
   },
   {
     "name": "運動",
-    "url": "breaking_news?category=sports"
+    "url": "news?category=sports"
   },
   {
     "name": "科技",
-    "url": "breaking_news?category=technology"
+    "url": "news?category=technology"
   }
 ]

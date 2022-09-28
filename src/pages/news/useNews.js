@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useSearchParams, useLocation } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
@@ -16,7 +16,6 @@ import mockNews from '../../mockData/news.json';
 
 const useNews = () => {
   const [params] = useSearchParams();
-  const location = useLocation();
   const dispatch = useDispatch();
 
   const category = params.get('category');
@@ -30,12 +29,12 @@ const useNews = () => {
   const isEnd = useSelector((state) => state.newsSlice.isEnd);
 
   const getTitle = () => {
-    if (location.pathname === '/breaking_news') {
+    if (category) {
       const findItem = mockMenu.find((item) => item.url.includes(category));
       return findItem.name;
     }
 
-    if (location.pathname === '/search') {
+    if (keywords) {
       return `Search: ${keywords}`;
     }
 
@@ -64,9 +63,9 @@ const useNews = () => {
 
   useEffect(() => {
     if (Object.keys(apiParams).length > 0) {
-      if (location.pathname === '/breaking_news') {
+      if (category) {
         dispatch(getCategoryNewsAction(apiParams));
-      } else if (location.pathname === '/search') {
+      } else if (keywords) {
         dispatch(getSearchNewsAction(apiParams));
       }
     }

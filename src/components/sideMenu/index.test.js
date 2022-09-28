@@ -6,15 +6,15 @@ import SideMenu from './index';
 const mockMenu = [
   {
     name: '熱門報導',
-    url: 'breaking_news?category=hot',
+    url: 'news?category=hot',
   },
   {
     name: '全球',
-    url: 'breaking_news?category=global',
+    url: 'news?category=global',
   },
   {
     name: '娛樂',
-    url: 'breaking_news?category=entertainment',
+    url: 'news?category=entertainment',
   },
 ];
 

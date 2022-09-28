@@ -9,11 +9,10 @@ function App() {
   return (
     <Layout>
       <Routes>
-        <Route path='breaking_news' element={<News />}></Route>
-        <Route path='search' element={<News />}></Route>
+        <Route path='news' element={<News />}></Route>
         <Route
           path='*'
-          element={<Navigate to='breaking_news?category=hot' />}
+          element={<Navigate to='news?category=hot' />}
         />
       </Routes>
     </Layout>
