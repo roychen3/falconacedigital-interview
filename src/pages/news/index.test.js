@@ -1,4 +1,3 @@
-import React from 'react';
 import { render } from '@testing-library/react';
 
 import News from './index';
@@ -127,7 +126,7 @@ test('Renders <News /> with first news loading', () => {
   const { queryByTestId } = render(<News />);
 
   expect(queryByTestId('title')).toHaveTextContent('商業');
-  expect(queryByTestId('ArticleCardList').childNodes.length).toEqual(0);
+  expect(queryByTestId('articleCardList').childNodes.length).toEqual(0);
   expect(queryByTestId('spinner')).toBeTruthy();
   expect(queryByTestId('errorMessage')).toBeFalsy();
 });
@@ -145,7 +144,7 @@ test('Renders <News /> with api error & use mock news', () => {
   const { queryByTestId } = render(<News />);
 
   expect(queryByTestId('title')).toHaveTextContent('熱門報導');
-  expect(queryByTestId('ArticleCardList').childNodes.length).toEqual(
+  expect(queryByTestId('articleCardList').childNodes.length).toEqual(
     mockNews.articles.length
   );
   expect(queryByTestId('spinner')).toBeFalsy();
@@ -167,7 +166,7 @@ test('Renders <News /> with totalArticles have data & api error', () => {
   const { queryByTestId } = render(<News />);
 
   expect(queryByTestId('title')).toHaveTextContent('全球');
-  expect(queryByTestId('ArticleCardList').childNodes.length).toEqual(
+  expect(queryByTestId('articleCardList').childNodes.length).toEqual(
     mockNews.articles.length
   );
   expect(queryByTestId('spinner')).toBeFalsy();
@@ -187,7 +186,7 @@ test('Renders <News /> with totalArticles have data &  news loading', () => {
   const { queryByTestId } = render(<News />);
 
   expect(queryByTestId('title')).toHaveTextContent('娛樂');
-  expect(queryByTestId('ArticleCardList').childNodes.length).toEqual(
+  expect(queryByTestId('articleCardList').childNodes.length).toEqual(
     mockNews.articles.length
   );
   expect(queryByTestId('spinner')).toBeTruthy();

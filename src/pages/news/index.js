@@ -46,7 +46,7 @@ const News = () => {
     <ArticleContainer>
       <ArticleTitle data-testid='title'>{title}</ArticleTitle>
 
-      <ArticleCardLayout data-testid='ArticleCardList'>
+      <ArticleCardLayout data-testid='articleCardList'>
         {totalArticles.map((item, itemIdx) =>
           itemIdx + 1 === totalArticles.length ? (
             <WrappedArticleCard
