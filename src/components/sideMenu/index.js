@@ -53,7 +53,7 @@ const SideMenu = ({ data }) => {
       {data.map((item, itemIdx) => (
         <li key={itemIdx}>
           <StyledLink to={item.url} data-testid="menuItem">
-            <ItemLayout $isSelected={item.url.includes(category)} data-testid="itemLayout">
+            <ItemLayout $isSelected={item.url.includes(`category=${category}`)} data-testid="itemLayout">
               <IconBox>
                 {getIcon(item.url.replace('news?category=', ''))}
               </IconBox>

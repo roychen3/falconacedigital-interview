@@ -14,7 +14,7 @@ const MobileMenu = ({ data }) => {
         <StyledLink
           key={itemIdx}
           to={item.url}
-          $isSelected={item.url.includes(category)}
+          $isSelected={item.url.includes(`category=${category}`)}
           data-testid='menuItem'
         >
           <Name>{item.name}</Name>
