@@ -27,7 +27,7 @@ const News = () => {
     infiniteScrollingLastNewsRef,
     mockNews,
   } = useNews();
-  
+
   const [errorAlertOpen, setErrorAlertOpen] = useState(false);
 
   const handleErrorAlertClose = () => {
@@ -44,17 +44,9 @@ const News = () => {
 
   return (
     <ArticleContainer>
-      <ArticleTitle>{title}</ArticleTitle>
+      <ArticleTitle data-testid='title'>{title}</ArticleTitle>
 
-      <ArticleCardLayout>
-        {totalArticles.length === 0 && newsError && (
-          <>
-            {mockNews.articles.map((item, itemIdx) => (
-              <ArticleCard key={itemIdx} data={item} />
-            ))}
-          </>
-        )}
-
+      <ArticleCardLayout data-testid='ArticleCardList'>
         {totalArticles.map((item, itemIdx) =>
           itemIdx + 1 === totalArticles.length ? (
             <WrappedArticleCard
@@ -66,16 +58,24 @@ const News = () => {
             <ArticleCard key={itemIdx} data={item} />
           )
         )}
+
+        {totalArticles.length === 0 && newsError && (
+          <>
+            {mockNews.articles.map((item, itemIdx) => (
+              <ArticleCard key={itemIdx} data={item} />
+            ))}
+          </>
+        )}
       </ArticleCardLayout>
 
       {newsLoading && (
-        <SpinnerLayout>
+        <SpinnerLayout data-testid='spinner'>
           <Spinner />
         </SpinnerLayout>
       )}
 
       <ErrorAlert open={errorAlertOpen} onClose={handleErrorAlertClose}>
-        <p>
+        <p data-testid='errorMessage'>
           系統發生錯誤!
           {totalArticles.length === 0 && ' 將使用假資料示意'}
         </p>
