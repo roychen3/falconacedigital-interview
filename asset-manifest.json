@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/mock-BingNews-web/static/css/main.00461fd8.css",
+    "main.js": "/mock-BingNews-web/static/js/main.1b3c63ab.js",
+    "static/media/Microsoft_Bing_logo.png": "/mock-BingNews-web/static/media/Microsoft_Bing_logo.c69b579c0222d0c9d437.png",
+    "index.html": "/mock-BingNews-web/index.html",
+    "main.00461fd8.css.map": "/mock-BingNews-web/static/css/main.00461fd8.css.map",
+    "main.1b3c63ab.js.map": "/mock-BingNews-web/static/js/main.1b3c63ab.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.00461fd8.css",
+    "static/js/main.1b3c63ab.js"
+  ]
+}
