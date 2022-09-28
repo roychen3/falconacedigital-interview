@@ -9,7 +9,7 @@ function App() {
   return (
     <Layout>
       <Routes>
-        <Route path='news' element={<News />}></Route>
+        <Route index path='news' element={<News />}></Route>
         <Route
           path='*'
           element={<Navigate to='news?category=hot' />}

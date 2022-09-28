@@ -1,3 +1,19 @@
+### DEMO
+https://roychen3.github.io/mock-BingNews-web
+
+<br />
+
+### description
+Using news api(https://newsapi.org/) to mock Bing News web.
+
+<br />
+
+### node v16.15.0
+
+<br />
+<br />
+<br />
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
