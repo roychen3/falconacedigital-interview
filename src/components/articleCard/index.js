@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import dayjs from 'dayjs';
+
+import { getPublishedAtTime } from '../../utils';
 
 import {
   StyledArticleCard,
@@ -14,20 +15,6 @@ import {
 } from './styled';
 
 const ArticleCard = ({ data, forwardedRef }) => {
-  const getPublishedAtTime = (dateStr) => {
-    const publishedAtDate = dayjs(dateStr);
-    const now = dayjs();
-    const diffHour = now.diff(publishedAtDate, 'hour');
-
-    if (diffHour < 24) {
-      return `${diffHour}小時`;
-    } else if (diffHour <= 24 * 7) {
-      return `${Math.floor(diffHour / 24)}天`;
-    } else {
-      return publishedAtDate.format('YYYY-MM-DD');
-    }
-  };
-
   return (
     <StyledArticleCard ref={forwardedRef}>
       <Link href={data.url}>
